@@ -153,7 +153,11 @@ export default {
 
 </script>
 
-<style>
+<style lang="scss">
+
+$primary-color-red:#DB0004;
+$assomb-color:darken($primary-color-red,20%);
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -163,13 +167,14 @@ export default {
   padding-top: 80px;
   padding-bottom: 20px;
   background: black;
+
 }
 
 .title {
   margin-top: 40px;
   padding-left: 40px;
   text-decoration: underline;
-  text-decoration-color: red;
+  text-decoration-color: $primary-color-red;
   color: white;
 }
 
@@ -180,7 +185,7 @@ export default {
 
 .list {
   border-top-style: solid;
-  border-block-color: red;
+  border-block-color: $primary-color-red;
   color: white;
 }
 
@@ -193,20 +198,20 @@ export default {
   border: ridge;
 }
 
-.form-img{
+.form-img {
   margin-top: 20px;
 }
 
 .formulaire {
   color: white;
   border-top-style: solid;
-  border-block-color: red;
+  border-block-color: $primary-color-red;
   text-align: end;
   display: inline-table;
 }
 
-form{
+form {
   border-top-style: solid;
-  border-block-color: red;
+  border-block-color: $primary-color-red;
 }
 </style>
