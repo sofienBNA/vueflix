@@ -11,72 +11,67 @@
 
       <p class="nbFilm">Nombre de Films : {{ movies.length }}</p>
     </div>
-    <ul>
 
-    </ul>
     <div class="list">
 
-      <ul id="movies-list" v-for="movie in filteredArticles" v-bind:key="movie">
-        <h3>{{ movie.id }}/ {{ movie.title.toUpperCase() }}</h3>
-        <img class="imgMovie" :src="movie.image" width="300px"/>
-        <p> Genre:
-        <ol class="genre" v-for="item in movie.genres" :key="item"> {{ item }}</ol>
-        </p>
-        <ol> Note :{{ movie.rating }}</ol>
-      </ul>
+      <Movie id="movies-list" v-for="movie in filteredArticles" v-bind:key="movie.id" :movie="movie"/>
+
+      <div class="formulaire">
+        <img class="form-img" src="./assets/images/logo-movie.png">
+        <form>
+          <div>
+
+            <label for="title">Titre:</label>
+            <input type="text" id="title" name="title" v-model="nouveau.title">
+          </div>
+          <div>
+            <label for="insert-image">Image:</label>
+            <input type="url" id="insert-image" name="insert-image" v-model="nouveau.image">
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="action" value="action" v-model="nouveau.genres">
+            <label for="action">action</label>
+            <input type="checkbox" id="Science-fiction" value="Science-fiction" v-model="nouveau.genres">
+            <label for="Science-fiction">Science-fiction</label>
+            <input type="checkbox" id="fantastique" value="fantastique" v-model="nouveau.genres">
+            <label for="fantastique">fantastique</label>
+            <input type="checkbox" id="horreur" value="horreur" v-model="nouveau.genres">
+            <label for="horreur">horreur</label>
+            <input type="checkbox" id="comedie" value="comedie" v-model="nouveau.genres">
+            <label for="comedie">comedie</label>
+          </div>
+          <div>
+            <label for="rating">Note:</label>
+            <input type="number" id="rating" name="rating" min="0" max="10" v-model="nouveau.rating">
+          </div>
+          <div>
+            <label for="review">Avis:</label>
+            <input type="text" id="review" name="review" v-model="nouveau.review">
+          </div>
+          <div>
+            <label for="description">Description:</label>
+            <textarea type="text" id="description" name="description" v-model="nouveau.description"></textarea>
+          </div>
+          <div class="button">
+            <button type="submit" v-on:click.prevent="addMovie">Ajouter nouveau film</button>
+          </div>
+        </form>
+      </div>
+
+
     </div>
-
-    <div class="formulaire">
-      <form>
-        <div>
-          <label for="title">Titre:</label>
-          <input type="text" id="title" name="title" v-model="nouveau.title">
-        </div>
-        <div>
-          <label for="insert-image">Image:</label>
-          <input type="url" id="insert-image" name="insert-image" v-model="nouveau.image">
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" id="action" value="action" v-model="nouveau.genres">
-          <label for="action">action</label>
-          <input type="checkbox" id="Science-fiction" value="Science-fiction" v-model="nouveau.genres">
-          <label for="Science-fiction">Science-fiction</label>
-          <input type="checkbox" id="fantastique" value="fantastique" v-model="nouveau.genres">
-          <label for="fantastique">fantastique</label>
-          <input type="checkbox" id="horreur" value="horreur" v-model="nouveau.genres">
-          <label for="horreur">horreur</label>
-          <input type="checkbox" id="comedie" value="comedie" v-model="nouveau.genres">
-          <label for="comedie">comedie</label>
-        </div>
-        <div>
-          <label for="rating">Note:</label>
-          <input type="number" id="rating" name="rating" min="0" max="10" v-model="nouveau.rating">
-        </div>
-        <div>
-          <label for="review">Avis:</label>
-          <input type="text" id="review" name="review" v-model="nouveau.review">
-        </div>
-        <div>
-          <label for="description">Description:</label>
-          <textarea type="text" id="description" name="description" v-model="nouveau.description"></textarea>
-        </div>
-        <div class="button">
-          <button type="submit" v-on:click.prevent="makeGetRequest">Ajouter nouveau film</button>
-        </div>
-      </form>
-    </div>
-
-
   </div>
-
 </template>
 
 <script>
 
+import Movie from "./components/Movie";
 
 export default {
   name: "App",
-  components: {},
+  components: {
+    Movie,
+  },
   data: function () {
     return {
       title: "Bienvenue sur VueFlix !",
@@ -127,19 +122,15 @@ export default {
       if (this.inputFilter === "") {
         return this.movies
       } else {
-        // return this.movies.filter(element => element.genres.includes( this.inputFilter))
+        // return this.movies.filter(element => element.genres.includes( this.inputFilter))ZS
         return this.movies.filter((element) => {
           return element.title.toLowerCase().match(this.inputFilter);
-      })
+        })
       }
     },
   },
   methods: {
-    getImgUrl(pic) {
-      return require("./assets/images/" + pic)
-    }
-    ,
-    makeGetRequest() {
+    addMovie() {
       this.movies.push({
             id: this.movies.length + 1,
             title: this.nouveau.title.toUpperCase(),
@@ -190,6 +181,7 @@ export default {
 .list {
   border-top-style: solid;
   border-block-color: red;
+  color: white;
 }
 
 #movies-list {
@@ -197,21 +189,24 @@ export default {
   color: white;
 }
 
-
-.genre {
-  display: inline-flex;
-}
-
 .logo {
   border: ridge;
-
 }
 
-.imgMovie {
-  border: groove
+.form-img{
+  margin-top: 20px;
 }
 
 .formulaire {
   color: white;
+  border-top-style: solid;
+  border-block-color: red;
+  text-align: end;
+  display: inline-table;
+}
+
+form{
+  border-top-style: solid;
+  border-block-color: red;
 }
 </style>
