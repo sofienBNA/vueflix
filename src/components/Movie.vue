@@ -9,12 +9,13 @@
     <ol class="genre" v-for="item in movie.genres" :key="item"> {{ item.toUpperCase() }}</ol>
     </p>
     <v-rating
-
+        class="rate"
         v-model="movie.rating"
         background-color="red lighten-3"
         color="yellow"
         length="10"
         large
+        readonly
     ></v-rating>
     <ol> Note :{{ movie.rating }}</ol>
 
