@@ -6,8 +6,16 @@
     <h3>{{ movie.id }}/ {{ movie.title.toUpperCase() }}</h3>
     <a :to="{name:'Movie', params:{id: movie.id}}"> <img class="imgMovie" :src="movie.image" width="300px"/> </a>
     <p> Genre:
-    <ol class="genre" v-for="item in movie.genres" :key="item"> {{ item }}</ol>
+    <ol class="genre" v-for="item in movie.genres" :key="item"> {{ item.toUpperCase() }}</ol>
     </p>
+    <v-rating
+
+        v-model="movie.rating"
+        background-color="red lighten-3"
+        color="yellow"
+        length="10"
+        large
+    ></v-rating>
     <ol> Note :{{ movie.rating }}</ol>
 
   </div>
