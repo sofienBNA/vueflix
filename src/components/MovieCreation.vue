@@ -127,23 +127,32 @@
 
 
         <!--          boutton-->
+<!--        <v-row>-->
+<!--          <v-spacer/>-->
+<!--          <div class="text-center">-->
+<!--            <v-btn-->
+<!--                color="success"-->
+<!--                class="mr-4"-->
+<!--                @click="addMovieEvent"-->
+<!--            >-->
         <v-row>
           <v-spacer/>
           <div class="text-center">
             <v-btn
                 color="success"
                 class="mr-4"
-                @click="addMovieEvent"
+                @click="emitGlobalClickEvent()"
+
             >
               Ajoutez Film
             </v-btn>
-            <v-btn
-                color="orange"
-                class="mr-4"
-                @click="resetEvent"
-            >
-              Reset Form
-            </v-btn>
+<!--            <v-btn-->
+<!--                color="orange"-->
+<!--                class="mr-4"-->
+<!--                @click="resetEvent"-->
+<!--            >-->
+<!--              Reset Form-->
+<!--            </v-btn>-->
           </div>
           <v-spacer/>
         </v-row>
@@ -153,7 +162,7 @@
 </template>
 
 <script>
-
+import {EventBus} from '/src/event-bus';
 export default {
   name: "MovieCreation",
   props: {
@@ -192,9 +201,13 @@ export default {
   //   this.$refs.form.reset()
   // },
   methods: {
-    addMovieEvent() {
-      this.$emit('addMovie-event', this.nouveau )
-    },
+
+    emitGlobalClickEvent() {
+      EventBus.$emit('clicked', this.nouveau);
+    }
+    // addMovieEvent() {
+    //   this.$emit('addMovie-event', this.nouveau )
+    // },
     // resetEvent(){
     //   this.$emit('reset-event',this.plaload.$refs.form.reset())
     // }
