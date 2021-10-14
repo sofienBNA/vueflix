@@ -133,14 +133,14 @@
             <v-btn
                 color="success"
                 class="mr-4"
-                @click="addMovie"
+                @click="addMovieEvent"
             >
               Ajoutez Film
             </v-btn>
             <v-btn
                 color="orange"
                 class="mr-4"
-                @click="reset"
+                @click="resetEvent"
             >
               Reset Form
             </v-btn>
@@ -157,9 +157,10 @@
 export default {
   name: "MovieCreation",
   props: {
-    moviecreation:Function,
+    movies: Array,
+    addMovie: Function
   },
-  data: function (){
+  data() {
     return {
       nouveau: {
         valid: true,
@@ -170,31 +171,35 @@ export default {
         imageRules: [v => !!v || 'URL is required'],
         genres: [],
         rating: null,
-        review: null,
-        description: null,
       },
     };
   },
-    methods: {
-      addMovie() {
-        this.movies.push({
-              id: this.movies.length + 1,
-              title: this.nouveau.title.toUpperCase(),
-              image: this.nouveau.nouveau.image,
-              genres: this.nouveau.nouveau.genres,
-              rating: this.nouveau.nouveau.rating,
-              review: this.nouveau.nouveau.review,
-              description: this.nouveau.nouveau.description
-            }
-        )
-        console.log(this.nouveau)
-        // .then(alert("Création réussie"));
-      },
-      reset() {
-        this.$refs.form.reset()
-      },
-    }
+  // addMovie() {
+  //   this.movies.push({
+  //         id: this.movies.length + 1,
+  //         title: this.nouveau.title,
+  //         image: this.nouveau.image,
+  //         genres: this.nouveau.genres,
+  //         rating: this.nouveau.rating,
+  //         review: this.nouveau.review,
+  //         description: this.nouveau.description
+  //       }
+  //   )
+  //   console.log(this.nouveau)
+  //   // .then(alert("Création réussie"));
+  // },
+  // reset() {
+  //   this.$refs.form.reset()
+  // },
+  methods: {
+    addMovieEvent() {
+      this.$emit('addMovie-event', this.nouveau )
+    },
+    // resetEvent(){
+    //   this.$emit('reset-event',this.plaload.$refs.form.reset())
+    // }
   }
+}
 
 </script>
 

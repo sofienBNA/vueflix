@@ -30,7 +30,7 @@ export default {
   props: {
     id: {
       type: Number,
-      default: 0
+      default: null
     },
     title: {
       type: String,
@@ -41,8 +41,7 @@ export default {
       default: "https://img.daf-mag.fr/Img/BREVE/2018/10/334316/Tribune-URSSAF-droit-erreur-vos-nouveaux-rapports-administration-F.jpg",
     },
     genres: {
-      type: String,
-      default: "aucun"
+      type: Array,
     },
     rating: {
       type: Number,
