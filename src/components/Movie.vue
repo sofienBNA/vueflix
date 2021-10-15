@@ -1,25 +1,26 @@
 <template>
 
-  <div class="list">
-
-
-    <h3>{{ movie.id }}/ {{ movie.title.toUpperCase() }}</h3>
-    <a :to="{name:'Movie', params:{id: movie.id}}"> <img class="imgMovie" :src="movie.image" width="300px"/> </a>
-    <p> Genre:
-    <ol class="genre" v-for="item in movie.genres" :key="item"> {{ item.toUpperCase() }}</ol>
-    </p>
-    <v-rating
-        class="rate"
-        v-model="movie.rating"
-        background-color="red lighten-3"
-        color="yellow"
-        length="10"
-        large
-        readonly
-    ></v-rating>
-    <ol> Note :{{ movie.rating }}</ol>
-
-  </div>
+  <v-app>
+    <div class="list">
+      <h3>{{ movie.id }}/ {{ movie.title.toUpperCase() }}</h3>
+      <a :to="{name:'Movie', params:{id: movie.id}}">
+        <router-link :to="{name:'Movie', params:{id:movie.id, movie:movie}}">
+          <img class="imgMovie" :src="movie.image" width="300px"/>
+        </router-link>
+      </a>
+      <p> Genre:</p>
+      <ol class="genre" v-for="item in movie.genres" :key="item"> {{ item.toUpperCase() }}</ol>
+      <v-rating
+          class="rate"
+          :value="movie.rating"
+          background-color="red lighten-3"
+          color="yellow"
+          length="10"
+          large
+          readonly
+      ></v-rating>
+    </div>
+  </v-app>
 
 
 </template>
@@ -69,8 +70,13 @@ export default {
   border: groove
 }
 
-.genre {
-  display: inline-flex;
+.list{
+  color: white
+;
 }
+.genre{
+  display:inline-flex;
+}
+
 
 </style>

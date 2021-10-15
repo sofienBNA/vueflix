@@ -138,21 +138,15 @@
         <v-row>
           <v-spacer/>
           <div class="text-center">
+            <router-link :to="{name:'Home'}" >
             <v-btn
                 color="success"
                 class="mr-4"
                 @click="emitGlobalClickEvent()"
-
             >
               Ajoutez Film
             </v-btn>
-<!--            <v-btn-->
-<!--                color="orange"-->
-<!--                class="mr-4"-->
-<!--                @click="resetEvent"-->
-<!--            >-->
-<!--              Reset Form-->
-<!--            </v-btn>-->
+            </router-link>
           </div>
           <v-spacer/>
         </v-row>
